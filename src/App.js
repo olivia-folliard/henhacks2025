@@ -1,8 +1,8 @@
-import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import Survey from './components/Survey';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Survey from "./components/Survey";
 
 function App() {
   return (
@@ -11,10 +11,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/survey" element={<Survey />} />
-        </Routes>
+        </Routes> 
       </div>
     </Router>
-  );  
+  );
 }
 
 export default App;
