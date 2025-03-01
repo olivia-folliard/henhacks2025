@@ -1,7 +1,9 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
+import { Navbar } from 'react-bootstrap';
+import {welcome} from '.../welcome'
 
 function App() {
   return (
@@ -9,6 +11,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/welcome" element={<welcome />} />
+          <Route path="/map" element ={<map/>}/>
         </Routes>
       </div>
     </Router>
