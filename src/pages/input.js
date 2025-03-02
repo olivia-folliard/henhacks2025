@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Input() {
+export default function Survey({ community }) {
   const [symptoms, setSymptoms] = useState([]);
   const [duration, setDuration] = useState([]);
   const [hydration, setHydration] = useState(3);
@@ -24,13 +24,14 @@ export default function Input() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log({
+      community,
       symptoms,
       duration,
       hydration,
       sleep,
       additionalInfo,
     });
-    alert("Survey submitted! ✅");
+    alert("submitted!");
   };
 
   return (
@@ -43,7 +44,7 @@ export default function Input() {
         borderRadius: "10px",
       }}
     >
-      <h2>Let's Check In</h2>
+      <h2>Survey for {community}</h2>
       <form onSubmit={handleSubmit}>
         <p>What’s going on? (Select all that apply)</p>
         {["Coughing", "Fever", "Headache", "Stomach issues", "Fatigue"].map(
