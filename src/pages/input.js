@@ -7,8 +7,8 @@ export default function Input() {
   const [symptoms, setSymptoms] = useState([]);
   const [duration, setDuration] = useState([]);
   const navigate = useNavigate();
-  const [symptoms, setSymptoms] = useState([]); 
-  const [duration, setDuration] = useState("");
+  //const [symptoms, setSymptoms] = useState([]); 
+  //const [duration, setDuration] = useState("");
   const [hydration, setHydration] = useState(3);
   const [sleep, setSleep] = useState(3);
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -101,7 +101,7 @@ export default function Input() {
               {symptom}
             </label>
           )
-        )}
+        )}</form>
 
         <p>How long have you been feeling this way? (Select all that apply)</p>
         {["Just today", "2–3 days", "A week or more"].map((time) => (
@@ -115,8 +115,6 @@ export default function Input() {
             {time}
           </label>
         ))}
-
-        )} 
  
  
         <p>How long have you been feeling this way? </p>
