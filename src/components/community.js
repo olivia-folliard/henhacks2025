@@ -32,7 +32,7 @@ export default function CommunitySelection({ onSelectCommunity }) {
 
   const fetchCommunityFromCoords = async (lat, lon) => {
     // API call
-    const communityName = `Lat: ${lat}, Lon: ${lon}`; // actual API call
+    const communityName = `Lat: ${lat}, Lon: ${lon}`; // actual API call?
     setLocation({ latitude: lat, longitude: lon, name: communityName });
     onSelectCommunity(communityName);
     setLoading(false); //community is fetched
