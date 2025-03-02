@@ -37,7 +37,7 @@ function Welcome() {
 
     return(
         <>
-            <h1>Hey Name, glad you're here! Let's check in: <br />
+            <h1>Hey, glad you're here! Let's check in: <br />
             how are you feeling today?</h1>
 
         {!question2 && (
