@@ -17,7 +17,7 @@ function App() {
     <div className="App">
     <Routes>
     <Route path="/" element={<CommunitySelection onSelectCommunity={setSelectedCommunity} />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/input" element ={<Input />}/>
           <Route path = "/map" element = {<Map />}/>
          
