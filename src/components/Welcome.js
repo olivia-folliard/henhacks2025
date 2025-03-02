@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Welcome.css';
+import { Link } from "react-router-dom";
 
 function Welcome() {
 
@@ -62,20 +63,36 @@ function Welcome() {
         
 
         {question2 && (
+            <>
+            <div className="q2text">Any of these sound familar today?</div>
+            <div className="selection">(Select all that apply)</div>
             <div>
-                {checkboxes.map(checkb => (
-                    <label key={checkb}>
-                    <input 
-                        type="checkbox" 
-                        value={checkb}
-                        onChange={handleCheckbox}
-                        checked={selected.includes(checkb)}
-                    /> {checkb}
-                </label>
-                ))}
-                </div>
+                    {checkboxes.map(checkb => (
+                        <label key={checkb}>
+                            <input
+                                type="checkbox"
+                                value={checkb}
+                                onChange={handleCheckbox}
+                                checked={selected.includes(checkb)} /> {checkb}
+                        </label>
+                    ))}
+                </div></>
             )}
-            
+
+    <Link to="/survey">
+        <button
+          style={{
+            padding: "10px",
+            backgroundColor: "#007bff",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Go to Survey
+        </button> 
+    </Link>
         </>
     )
 }

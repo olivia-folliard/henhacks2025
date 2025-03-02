@@ -79,3 +79,14 @@ body, html {
     background-color: #fce0c6;
     color: #5d78a5;
 }
+
+.q2text {
+    color: #000501;
+    margin-bottom: 5px;
+}
+
+.selection {
+    color: #000501;
+    font-style: italic;
+    margin-bottom: 5px;
+}
