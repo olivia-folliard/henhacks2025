@@ -51,7 +51,7 @@ export default function CommunitySelection({ onSelectCommunity }) {
 
   const handleSubmit = () => {
     if (selectedCommunity) {
-      navigate("/home"); // when a community is selected
+      navigate("/Welcome"); // when a community is selected
     }
   };
 
