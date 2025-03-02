@@ -1,3 +1,9 @@
+import "./App.css";
+import React from "react";
+  import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Survey from "./components/Survey";
+import Welcome from "./components/Welcome";
 import './App.css';
 import React from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
@@ -7,7 +13,16 @@ import Map from './pages/map';
 import Input from './pages/input'
 
 function App() {
+
   return (
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/survey" element={<Survey />} />
+        </Routes>
+      </div>
+  );
     <div className="App">
     <Routes>
           <Route path="/" element={<Home />} />

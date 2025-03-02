@@ -4,6 +4,8 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 
 export default function Input() {
+  const [symptoms, setSymptoms] = useState([]);
+  const [duration, setDuration] = useState([]);
   const navigate = useNavigate();
   const [symptoms, setSymptoms] = useState([]); 
   const [duration, setDuration] = useState("");
@@ -17,6 +19,24 @@ export default function Input() {
       prev.includes(value) ? prev.filter((s) => s !== value) : [...prev, value]
     );
   };
+
+  const handleDurationChange = (event) => {
+    const value = event.target.value;
+    setDuration((prev) =>
+      prev.includes(value) ? prev.filter((d) => d !== value) : [...prev, value]
+    );
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({
+      symptoms,
+      duration,
+      hydration,
+      sleep,
+      additionalInfo,
+    });
+    
    const handleSubmit = async() => {
    
     const genAI = new GoogleGenerativeAI("AIzaSyDCjWcGdlboj2mGmB6DmJB1FE87qgrssOg");
@@ -63,6 +83,9 @@ export default function Input() {
         borderRadius: "10px",
       }}
     >
+  
+      <h2>Let's Check In</h2>
+      <form onSubmit={handleSubmit}>
       <h2> Let's Check In</h2>
       <form onSubmit={submitAndNavigate}>
         <p>What’s going on? (Select all that apply)</p>
@@ -72,11 +95,27 @@ export default function Input() {
               <input
                 type="checkbox"
                 value={symptom}
+                checked={symptoms.includes(symptom)}
                 onChange={handleSymptomChange}
               />{" "}
               {symptom}
             </label>
           )
+        )}
+
+        <p>How long have you been feeling this way? (Select all that apply)</p>
+        {["Just today", "2–3 days", "A week or more"].map((time) => (
+          <label key={time} style={{ display: "block" }}>
+            <input
+              type="checkbox"
+              value={time}
+              checked={duration.includes(time)}
+              onChange={handleDurationChange}
+            />{" "}
+            {time}
+          </label>
+        ))}
+
         )} 
  
  
@@ -97,7 +136,7 @@ export default function Input() {
  
  
         <p>Have you been staying hydrated and eating well?</p>
-        <p> (1 = Not really, 5 = Yes, feeling balanced)</p>
+        <p>(1 = Not really, 5 = Yes, feeling balanced)</p>
         <input
           type="range"
           min="1"
@@ -109,7 +148,7 @@ export default function Input() {
  
         <p>
           How’s your sleep been lately?
-          <br></br> (1 = Restless, 5 = Sleeping great)
+          <br /> (1 = Restless, 5 = Sleeping great)
         </p>
         <input
           type="range"
@@ -142,13 +181,10 @@ export default function Input() {
             cursor: "pointer",
           }}
         >
-          Submit & Continue →
+          Let's check on my community →
         </button>
       </form>
     </div>
   );
+}
  }
- 
- 
-
- 
