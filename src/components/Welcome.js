@@ -3,9 +3,20 @@ import React, { useState } from 'react';
 function Welcome() {
 
     const [selected, setSelected] = useState([]);
+    const [question2, setquestion2] = useState(false);
 
-    const handleCheckbox = () => {
-        setSelected();
+    const handleCheckbox = (event) => {
+        const {value, checked} = event.target;
+        if (checked) {
+            setSelected(prev => [...prev, value]);
+        }
+        else {
+            setSelected(prev => prev.filter(option => option !== value));
+        }
+    }
+
+    const handleNextClick = () => {
+        setquestion2(true);
     }
 
     const checkboxes = [
@@ -21,24 +32,33 @@ function Welcome() {
             <h1>Hey Name, glad you're here! Let's check in: <br />
             how are you feeling today?</h1>
 
-        <div>
-            <input 
-                type="range"
-                min="1"
-                max="5"
-            />
-        </div>
-
-            {checkboxes.map(checkbox => (
-                <label key={checkbox}>
+        {!question2 && (
+            <div>
                 <input 
-                    type="checkbox" 
-                    value={checkbox}
-                    onChange={handleCheckbox}
-                    checked={selected.includes(checkbox)}
-                /> {checkbox}
-            </label>
-            ))}
+                    type="range"
+                    min="1"
+                    max="5"
+                />
+                <button onClick={handleNextClick}>Next Page</button>
+            </div>
+        )}
+        
+
+        {question2 && (
+            <div>
+                {checkboxes.map(checkb => (
+                    <label key={checkb}>
+                    <input 
+                        type="checkbox" 
+                        value={checkb}
+                        onChange={handleCheckbox}
+                        checked={selected.includes(checkb)}
+                    /> {checkb}
+                </label>
+                ))}
+                </div>
+            )}
+            
         </>
     )
 }
