@@ -4,9 +4,11 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 
 export default function Input() {
+  const [symptoms, setSymptoms] = useState([]);
+  const [duration, setDuration] = useState([]);
   const navigate = useNavigate();
-  const [symptoms, setSymptoms] = useState([]); 
-  const [duration, setDuration] = useState("");
+  //const [symptoms, setSymptoms] = useState([]); 
+  //const [duration, setDuration] = useState("");
   const [hydration, setHydration] = useState(3);
   const [sleep, setSleep] = useState(3);
   const [additionalInfo, setAdditionalInfo] = useState("");
@@ -17,6 +19,24 @@ export default function Input() {
       prev.includes(value) ? prev.filter((s) => s !== value) : [...prev, value]
     );
   };
+
+  const handleDurationChange = (event) => {
+    const value = event.target.value;
+    setDuration((prev) =>
+      prev.includes(value) ? prev.filter((d) => d !== value) : [...prev, value]
+    );
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log({
+      symptoms,
+      duration,
+      hydration,
+      sleep,
+      additionalInfo,
+    });
+    
    const handleSubmit = async() => {
    
     const genAI = new GoogleGenerativeAI("AIzaSyDCjWcGdlboj2mGmB6DmJB1FE87qgrssOg");
@@ -63,6 +83,9 @@ export default function Input() {
         borderRadius: "10px",
       }}
     >
+  
+      <h2>Let's Check In</h2>
+      <form onSubmit={handleSubmit}>
       <h2> Let's Check In</h2>
       <form onSubmit={submitAndNavigate}>
         <p>What’s going on? (Select all that apply)</p>
@@ -78,7 +101,20 @@ export default function Input() {
               {symptom}
             </label>
           )
-        )} 
+        )}</form>
+
+        <p>How long have you been feeling this way? (Select all that apply)</p>
+        {["Just today", "2–3 days", "A week or more"].map((time) => (
+          <label key={time} style={{ display: "block" }}>
+            <input
+              type="checkbox"
+              value={time}
+              checked={duration.includes(time)}
+              onChange={handleDurationChange}
+            />{" "}
+            {time}
+          </label>
+        ))}
  
  
         <p>How long have you been feeling this way? </p>
@@ -148,8 +184,5 @@ export default function Input() {
       </form>
     </div>
   );
+}
  }
- 
- 
-
- 

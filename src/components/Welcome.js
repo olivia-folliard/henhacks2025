@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import './Welcome.css';
 
 function Welcome() {
 
     const [selected, setSelected] = useState([]);
     const [question2, setquestion2] = useState(false);
+    const [sliderValue, setSliderValue] = useState(5);
+
+    const handleSliderChange = (e) => {
+        setSliderValue(e.target.value);
+    }
+    const fillPercentage = ((sliderValue - 1) / 4) * 100;
 
     const handleCheckbox = (event) => {
         const {value, checked} = event.target;
@@ -33,13 +40,23 @@ function Welcome() {
             how are you feeling today?</h1>
 
         {!question2 && (
-            <div>
+            <div class="slidecontainer">
                 <input 
                     type="range"
                     min="1"
                     max="5"
+                    class="slider"
+                    value={sliderValue}
+                    onChange={handleSliderChange}
+                    style={{
+                        background: `linear-gradient(to right, #7899D4 ${fillPercentage}%, #ddd ${fillPercentage}%)`
+                    }}
                 />
-                <button onClick={handleNextClick}>Next Page</button>
+                <div className="slider-labels">
+                    <span className="label">Not so good</span>
+                    <span className="label">Feeling amazing!</span>
+                </div>
+                <button onClick={handleNextClick} class="button">Next Page</button>
             </div>
         )}
         
